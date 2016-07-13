@@ -1,0 +1,36 @@
+*** Targets ***
+
+probe = FPing
+
+menu = Top
+title = Network Latency Grapher
+remark = Welcome to the SmokePing for qms. \
+         Here you will learn all about the latency of what I consider interesting..
+
++ Local
+
+menu = Local
+title = Local Network
+#parents = owner:/Test/James location:/
+
+++ LocalMachine
+
+menu = Local Machine
+title = This host
+host = localhost
+#alerts = someloss
+
++ IPv6_Testing
+menu = IPv6 Testing
+title = IPv6 Testing
+probe = FPing6
+
+++ CMTS
+menu = CMTS IPv6
+title = CMTS IPv6 Address
+host = 2600:8800:FF06:B00::1
+
+++ Google
+menu = Google DNS
+title = Google DNS
+host = 2001:4860:4860::8888
