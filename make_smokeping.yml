@@ -1,0 +1,41 @@
+---
+- name: Ansible automation of Smokeping Docker container
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    IPv4:
+      IPv4_Hosts:
+        - {name: Router1, address: 10.255.255.1}
+        - {name: Router2, address: 10.255.255.2}
+    IPv6:
+      IPv6_Hosts:
+        - {name: GoogleDNS, address: "2001:4860:4860::8888"}
+
+    Docker:
+        Container_Name: "smokeping_test"
+        TZ: TZ="America/Phoenix"
+        Config: "/config.d"
+        External_Port: 8080
+        Smokeping_Config: "/etc/smokeping/config.d"
+        Base_Container: "base_smokeping"
+
+  tasks:
+
+  - name: Create Target file for Smokeping using Jinja2
+    template:
+      src: ./templates/targets.j2
+      dest: ./config.d/Targets
+
+  - name: Find out playbook path
+    shell: pwd
+    register: working_dir
+  - debug:
+    debug: var=working_dir.stdout
+
+  - name: Build the Docker image
+    command: docker build -t {{Docker.Base_Container}} .
+
+  - name: Run the Docker container using the configs that were generated
+    command: docker run --name {{Docker.Container_Name}} -d -p {{Docker.External_Port}}:80 -e {{Docker.TZ}} -v {{working_dir.stdout}}{{Docker.Config}}:{{Docker.Smokeping_Config}} {{Docker.Base_Container}}

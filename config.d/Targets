@@ -1,3 +1,5 @@
+*** Targets ***
+
 probe = FPing
 
 menu = Top
@@ -9,14 +11,14 @@ remark = Welcome to the SmokePing container within Docker.\
 menu = IPv4_Hosts
 title = IPv4_Hosts
 
-++ 10.255.255.1
-menu = 10.255.255.1
-title = 10.255.255.1 IPv4
+++ Router1
+menu = Router1
+title = Router1 IPv4
 host = 10.255.255.1 	
 
-++ 10.255.255.2
-menu = 10.255.255.2
-title = 10.255.255.2 IPv4
+++ Router2
+menu = Router2
+title = Router2 IPv4
 host = 10.255.255.2 	
  
 
@@ -25,9 +27,8 @@ menu = IPv6_Hosts
 title = IPv6_Hosts
 probe = FPing6
 
-++ 2001:4860:4860::8888
-menu = 2001:4860:4860::8888
-title = 2001:4860:4860::8888 IPv6
+++ GoogleDNS
+menu = GoogleDNS
+title = GoogleDNS IPv6
 host = 2001:4860:4860::8888 	
  
-
