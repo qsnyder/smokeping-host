@@ -1,0 +1,21 @@
+---
+- name: Jinja2 Smokeping Target Test
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    IPv4:
+      IPv4_Hosts:
+        - 10.255.255.1
+        - 10.255.255.2
+    IPv6:
+      IPv6_Hosts:
+        - 2001:4860:4860::8888
+
+  tasks:
+
+  - name: Create Target file for Smokeping
+    template:
+      src: ./templates/targets.j2
+      dest: ./results/Targets
