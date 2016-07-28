@@ -42,4 +42,5 @@ The YAML file also contains `IPv4_Hosts` and `IPv6_Hosts` sections.  These varia
 * IPv6 address entries will need to be encapsulated in "double quotes" (`"`) due to the colon interfering with the key:value pairs in the dictionary
 
 ### Errata or Bugs
-Please contact me directly with any issues.
+[] Native Docker for Mac OS X does not actually perform a ping, therefore all hosts entered will be seen as reachable from the container's point of view.  Docker for Mac is tracking this issue (#1925).  Latest test running 1.12.0-rc4-beta20 still has this issue.
+[] Actual IPv6 addressing support will need to be statically enabled on the host.  Further instructions will be linked at a later date
